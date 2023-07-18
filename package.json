@@ -1,0 +1,35 @@
+{
+  "name": "QuickGo",
+  "displayName": "QuickGo",
+  "version": "0.0.1",
+  "description": "Customize shortcut keys for open pages.",
+  "author": "shisongyan",
+  "scripts": {
+    "dev": "plasmo dev",
+    "build": "plasmo build",
+    "test": "plasmo test"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.1.4",
+    "@plasmohq/storage": "^1.7.0",
+    "antd": "^5.7.0",
+    "keyboardjs": "^2.7.0",
+    "plasmo": "0.80.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.0",
+    "@types/chrome": "0.0.241",
+    "@types/node": "20.4.2",
+    "@types/react": "18.2.15",
+    "@types/react-dom": "18.2.7",
+    "prettier": "3.0.0",
+    "typescript": "5.1.6"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f6ffed;
+}
+.options-container {
+  margin: auto;
+  height: 100vh;
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  header {
+    .title {
+      font-size: 30px;
+      padding: 16px 0;
+      font-weight: bold;
+    }
+    
+  }
+  main {
+    flex: 1;
+    overflow: auto;
+    .anticon {
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .anticon-delete {
+      color: #ff4d4f;
+      &:hover {
+        color: #f5222d;
+      }
+    }
+    .anticon-copy {
+      color: #4096ff;
+      &:hover {
+        color: #1677ff;
+      }
+    }
+  }
+
+  footer {
+    padding: 24px 0;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
