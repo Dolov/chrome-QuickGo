@@ -25,6 +25,7 @@ export const useOpenPage = () => {
         const handler = eventsRef.current[index]
         keyboardJS.unbind(code, handler);
       })
+      eventsRef.current = {}
     }
   }, [storage])
 
