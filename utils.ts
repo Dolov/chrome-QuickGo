@@ -2,6 +2,8 @@ import React from 'react'
 import keyboardJS from 'keyboardjs'
 import { useStorage } from "@plasmohq/storage/hook"
 
+const formatCode = (code: string) => code.toLowerCase().replace(/\s/g, '')
+
 
 export const useOpenPage = () => {
   const [storage] = useStorage('settings')
@@ -9,7 +11,19 @@ export const useOpenPage = () => {
 
   React.useEffect(() => {
     if (!Array.isArray(storage)) return
-    const newStorage = storage.filter(item => item.url && item.code)
+    const { protocol, hostname } = location
+    const newStorage = storage.filter(item => {
+      const { url, code, enable, senior } = item
+      const required = url && code && enable
+      if (!required) return false
+      const trigger = formatCode(senior?.trigger || "").split(",")
+      if (!trigger) return true
+      /** 认为是在当前的配置页面中 */
+      if (protocol === "chrome-extension:") return true
+      /** 简单认为符合条件 */
+      return trigger.some(item => hostname.includes(item))
+    })
+
     newStorage.forEach((item, index) => {
       const { code, url } = item
       if (!url) return
@@ -17,13 +31,13 @@ export const useOpenPage = () => {
       eventsRef.current[index] = () => {
         window.open(url)
       }
-      keyboardJS.bind(code, eventsRef.current[index]);
+      keyboardJS.bind(formatCode(code), eventsRef.current[index]);
     })
     return () => {
       newStorage.forEach((item, index) => {
         const { code } = item
         const handler = eventsRef.current[index]
-        keyboardJS.unbind(code, handler);
+        keyboardJS.unbind(formatCode(code), handler);
       })
       eventsRef.current = {}
     }

@@ -7,6 +7,11 @@
 body {
   background: #f6ffed;
 }
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
 .options-container {
   margin: auto;
   height: 100vh;
@@ -19,26 +24,27 @@ body {
       padding: 16px 0;
       font-weight: bold;
     }
-    
+    .desc {
+      padding-bottom: 12px;
+      color: rgba(0, 0, 0, .65);
+      font-weight: bold;
+    }
   }
   main {
     flex: 1;
     overflow: auto;
+    padding-right: 48px;
     .anticon {
       cursor: pointer;
       font-size: 20px;
+      display: inline-block;
+      transform: translateY(1px);
     }
     .anticon-delete {
-      color: #ff4d4f;
-      &:hover {
-        color: #f5222d;
-      }
+      color: #f5222d;
     }
-    .anticon-copy {
-      color: #4096ff;
-      &:hover {
-        color: #1677ff;
-      }
+    .anticon-copy, .anticon-setting {
+      color: #1677ff;
     }
   }
 
