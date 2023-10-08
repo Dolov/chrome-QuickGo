@@ -1,7 +1,7 @@
 {
   "name": "QuickGo",
   "displayName": "QuickGo",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Customize shortcut keys for open pages.",
   "author": "shisongyan",
   "scripts": {

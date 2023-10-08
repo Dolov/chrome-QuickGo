@@ -11,6 +11,6 @@ chrome plugin - Customize shortcut keys for open pages.
 1. 支持任意单键、组合键。
 2. 支持一个快捷键打开多个页面。
 3. 支持配置快捷键生效的页面。
-4. a 标签添加 _blank，在新标签页打开
+4. 超级链接在新标签页打开
 
 ![img](screenshots/WX20230719-113033@2x.png)
