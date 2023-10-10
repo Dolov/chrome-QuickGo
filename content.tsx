@@ -1,5 +1,6 @@
 import React from 'react'
 import { useOpenPage } from './utils'
+import { useStorage } from "@plasmohq/storage/hook"
 
 export interface contentProps {
   
@@ -8,9 +9,11 @@ export interface contentProps {
 const content: React.FC<contentProps> = props => {
 
   useOpenPage()
+  const [_blank] = useStorage('a-target-blank')
 
   React.useEffect(() => {
     document.addEventListener('mouseover', event => {
+      if (!_blank) return
       // @ts-ignore
       const tagName = (event.target.tagName as string).toLowerCase()
       if (tagName !== 'a') return

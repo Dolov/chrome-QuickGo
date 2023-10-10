@@ -31,6 +31,7 @@ const options: React.FC<optionsProps> = props => {
   const [form] = Form.useForm();
   const [data, setData] = React.useState([])
   const [storage, setStorage] = useStorage('settings')
+  const [aTarget, setaTarget] = useStorage('a-target-blank')
   const [currentItem, setCurrentItem] = React.useState(null)
 
   /** 初始化赋值 */
@@ -128,6 +129,10 @@ const options: React.FC<optionsProps> = props => {
           }}
         />
       </main>
+      <div>
+        <span style={{ marginRight: 24 }}>超级链接始终打开新的标签页</span>
+        <Switch checked={aTarget} onChange={setaTarget} />
+      </div>
       <footer>
         <Button onClick={handleSave} type="primary">保存</Button>
       </footer>
