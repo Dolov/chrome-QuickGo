@@ -44,3 +44,19 @@ export const useOpenPage = () => {
   }, [storage])
 
 }
+
+const hosts = [
+  "link.juejin.cn",
+  "link.zhihu.com"
+]
+
+export const useRediect = () => {
+  React.useEffect(() => {
+    const { host, href } = location
+    const url = new URL(href)
+    const target = url.searchParams.get('target')
+    if (!hosts.includes(host)) return
+    if (!target) return
+    location.href = target
+  }, [])
+}
