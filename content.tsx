@@ -10,10 +10,12 @@ const content: React.FC<contentProps> = props => {
 
   useOpenPage()
   const [_blank] = useStorage('a-target-blank')
+  const blankRef = React.useRef(false)
+  blankRef.current = _blank
 
   React.useEffect(() => {
     document.addEventListener('mouseover', event => {
-      if (!_blank) return
+      if (!blankRef.current) return
       // @ts-ignore
       const tagName = (event.target.tagName as string).toLowerCase()
       if (tagName !== 'a') return
