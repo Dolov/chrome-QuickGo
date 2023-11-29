@@ -1,5 +1,5 @@
 import React from 'react'
-import { useOpenPage, useRediect } from './utils'
+import { useOpenPage } from './utils'
 import { useStorage } from "@plasmohq/storage/hook"
 import type { PlasmoCSConfig } from "plasmo"
 
@@ -14,16 +14,31 @@ export interface contentProps {
   
 }
 
+const hosts = [
+  "link.juejin.cn",
+  "link.zhihu.com"
+]
+
 const content: React.FC<contentProps> = props => {
 
-  useRediect()
   useOpenPage()
+  const [google] = useStorage('auto-google')
   const [_blank] = useStorage('a-target-blank')
   const blankRef = React.useRef(false)
   blankRef.current = _blank
 
+  /** 处理指定站点的安全跳转 */
   React.useEffect(() => {
-    
+    const { host, href } = location
+    const url = new URL(href)
+    const target = url.searchParams.get('target')
+    if (!hosts.includes(host)) return
+    if (!target) return
+    location.href = target
+  }, [])
+
+  /** 是否在新的标签也打开页面 */
+  React.useEffect(() => {
     document.addEventListener('mouseover', event => {
       if (!blankRef.current) return
       // @ts-ignore
@@ -36,6 +51,14 @@ const content: React.FC<contentProps> = props => {
       event.target.setAttribute("target", "_blank")
     })
   }, [])
+
+  /** 是否在自动替换百度为 google */
+  React.useEffect(() => {
+    if (!google) return
+    const { href } = location
+    if (href !== "https://www.baidu.com/") return
+    location.href = "https://www.google.com/"
+  }, [google])
 
   return null
 }
