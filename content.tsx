@@ -49,6 +49,8 @@ const content: React.FC<contentProps> = props => {
       if (target === "_blank") return
       // @ts-ignore
       event.target.setAttribute("target", "_blank")
+      // @ts-ignore
+      event.target.setAttribute("QuickGo", "true")
     })
   }, [])
 
